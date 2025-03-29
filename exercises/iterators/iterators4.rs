@@ -15,6 +15,14 @@ pub fn factorial(num: u64) -> u64 {
     // For an extra challenge, don't use:
     // - recursion
     // Execute `rustlings hint iterators4` for hints.
+    // 递归作法
+    // match num {
+    //     0 => 1,
+    //     _ => num*factorial(num -1),
+    // }
+
+    //迭代器
+    (1..=num).product()
 }
 
 #[cfg(test)]
