@@ -10,15 +10,13 @@ fn main() {
         .duration_since(std::time::UNIX_EPOCH)
         .unwrap()
         .as_secs();
-    
     // 设置环境变量 TEST_FOO 为当前时间戳
-    println!("cargo:rustc-env=TEST_FOO={}", timestamp);    
+    println!("cargo:rustc-env=TEST_FOO={}", timestamp);
     // 告诉 Cargo 如果 build.rs 改变就重新运行
-    println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rustc-cfg=feature=\"pass\"");
 
     // In tests8, we should enable "pass" feature to make the
     // testcase return early. Fill in the command to tell
     // Cargo about that.
-    let your_command = "Your command here, please checkout exercises/tests/build.rs";
-    println!("cargo:{}", your_command);
+    println!("cargo:rerun-if-changed=build.rs");
 }
